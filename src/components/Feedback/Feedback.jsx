@@ -1,5 +1,6 @@
 import React from 'react';
 import Statistics from "./Statistics";
+import FeedbackOptions from "./FeedbackOptions";
 
 class Feedback extends React.Component {
   state = {
@@ -27,24 +28,14 @@ class Feedback extends React.Component {
   }
 
   render() {
+    const keyName = Object.keys(this.state);
+    const { good, neutral, bad } = this.state;
     return (
       <div className="Counter">
 
         <h1 className="Title">Please leave feedback</h1>
-
-        <div className="Counter__controls">
-          <button type="button" onClick={this.handleIncrement}>
-            good
-          </button>
-          <button type="button" onClick={this.handleIncrement}>
-            neutral
-          </button>
-          <button type="button" onClick={this.handleIncrement}>
-            bad
-          </button>
-        </div>
-
-        <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
+        <FeedbackOptions options={keyName} onLeaveFeedback={this.handleIncrement}/>
+        <Statistics good={good} neutral={neutral} bad={bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
         
       </div>
     );
