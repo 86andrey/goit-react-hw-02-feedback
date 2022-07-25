@@ -8,20 +8,19 @@ class Counter extends React.Component {
     bad: 0,
   };
 
-  goodIncrement = () => {
-    this.setState(prevState => ({
-      good: prevState.good + 1,
-    }));
+  handleIncrement = event => {
+    const e = event.target.textContent;
+    this.setState(prevState => {
+      return { [e]: prevState[e] + 1 };
+    });
   };
-  neutralIncrement = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
+
+  countTotalFeedback = () => {
+    const arrayTotalCount = Object.values(this.state);
+    return this.state.good + this.state.neutral + this.state.bad;
   };
-  badIncrement = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
-    }));
+  countPositiveFeedbackPercentage = () => {
+    return;
   };
 
   render() {
@@ -29,20 +28,21 @@ class Counter extends React.Component {
       <div className="Counter">
         <h1 className="Title">Please leave feedback</h1>
         <div className="Counter__controls">
-          <button type="button" onClick={this.goodIncrement}>
-            Good
+          <button type="button" onClick={this.handleIncrement}>
+            good
           </button>
-          <button type="button" onClick={this.neutralIncrement}>
-            Neutral
+          <button type="button" onClick={this.handleIncrement}>
+            neutral
           </button>
-          <button type="button" onClick={this.badIncrement}>
-            Bad
+          <button type="button" onClick={this.handleIncrement}>
+            bad
           </button>
         </div>
         <div>
           <p>Good: {this.state.good}</p>
           <p>Neutral: {this.state.neutral}</p>
           <p>Bad: {this.state.bad}</p>
+          <p>Total: {this.countTotalFeedback()}</p>
         </div>
       </div>
     );
