@@ -22,9 +22,9 @@ class Counter extends React.Component {
     }, 0);
   }
 
-  countPositiveFeedbackPercentage = () => {
-    return;
-  };
+  countPositiveFeedbackPercentage() {
+    return Math.floor((this.state.good * 100) / this.countTotalFeedback());
+  }
 
   render() {
     return (
@@ -46,6 +46,7 @@ class Counter extends React.Component {
           <p>Neutral: {this.state.neutral}</p>
           <p>Bad: {this.state.bad}</p>
           <p>Total: {this.countTotalFeedback()}</p>
+          <p>Positive feedback: {this.countPositiveFeedbackPercentage()}%</p>
         </div>
       </div>
     );
