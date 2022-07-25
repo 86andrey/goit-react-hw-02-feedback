@@ -1,7 +1,7 @@
-import Counter from "./Counter/Counter";
+import Feedback from './Feedback';
 
 export const App = () => {
   return (
-    <Counter/>
+    <Feedback />
   );
 };

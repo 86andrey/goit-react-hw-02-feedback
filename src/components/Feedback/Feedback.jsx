@@ -1,7 +1,7 @@
 import React from 'react';
-import './Counter.css';
+import Statistics from "./Statistics";
 
-class Counter extends React.Component {
+class Feedback extends React.Component {
   state = {
     good: 0,
     neutral: 0,
@@ -29,7 +29,9 @@ class Counter extends React.Component {
   render() {
     return (
       <div className="Counter">
+
         <h1 className="Title">Please leave feedback</h1>
+
         <div className="Counter__controls">
           <button type="button" onClick={this.handleIncrement}>
             good
@@ -41,15 +43,12 @@ class Counter extends React.Component {
             bad
           </button>
         </div>
-        <div>
-          <p>Good: {this.state.good}</p>
-          <p>Neutral: {this.state.neutral}</p>
-          <p>Bad: {this.state.bad}</p>
-          <p>Total: {this.countTotalFeedback()}</p>
-          <p>Positive feedback: {this.countPositiveFeedbackPercentage()}%</p>
-        </div>
+
+        <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
+        
       </div>
     );
   }
 }
-export default Counter;
+
+export default Feedback;
