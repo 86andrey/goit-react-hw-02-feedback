@@ -15,10 +15,13 @@ class Counter extends React.Component {
     });
   };
 
-  countTotalFeedback = () => {
-    const arrayTotalCount = Object.values(this.state);
-    return this.state.good + this.state.neutral + this.state.bad;
-  };
+  countTotalFeedback() {
+    const arrayDataCount = Object.values(this.state);
+    return arrayDataCount.reduce((acc, item) => {
+      return acc + item;
+    }, 0);
+  }
+
   countPositiveFeedbackPercentage = () => {
     return;
   };
