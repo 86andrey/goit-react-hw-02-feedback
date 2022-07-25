@@ -2,6 +2,7 @@ import React from 'react';
 import Statistics from "./Statistics";
 import FeedbackOptions from "./FeedbackOptions";
 import Section from "./Section";
+import Notification from './Notification';
 
 class Feedback extends React.Component {
   state = {
@@ -19,9 +20,10 @@ class Feedback extends React.Component {
 
   countTotalFeedback() {
     const arrayDataCount = Object.values(this.state);
-    return arrayDataCount.reduce((acc, item) => {
+    const count =  arrayDataCount.reduce((acc, item) => {
       return acc + item;
     }, 0);
+    return count;
   }
 
   countPositiveFeedbackPercentage() {
@@ -31,13 +33,16 @@ class Feedback extends React.Component {
   render() {
     const keyName = Object.keys(this.state);
     const { good, neutral, bad } = this.state;
+    const count = this.countTotalFeedback();
     return (
       <div className="Counter">
         <Section title='Leave your feedback please'>
           <FeedbackOptions options={keyName} onLeaveFeedback={this.handleIncrement}/>
         </Section>
         <Section title='Statistics'>
-          <Statistics good={good} neutral={neutral} bad={bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
+          {count===0 ? (<Notification message={'There is no feedback'} />) : (
+            <Statistics good={good} neutral={neutral} bad={bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
+          )}
         </Section>
       </div>
     );
