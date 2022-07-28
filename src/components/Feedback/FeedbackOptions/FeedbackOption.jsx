@@ -1,20 +1,35 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
 const FeedbackOptions = ({ options, onLeaveFeedback }) => {
     return (
-        <ul>
+        <Ul>
             {options.map(option => {
                 return (
                     <li key={option}>
-                        <button type="button" onClick={onLeaveFeedback}>
+                        <Btn type="button" onClick={onLeaveFeedback}>
                             {option}
-                        </button>
+                        </Btn>
                     </li>
                 );
             })}
-        </ul>);
+        </Ul>);
 }
+
+const Ul = styled.ul`
+align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0, auto;
+`;
+const Btn = styled.button`
+border-color: inherit;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 22px;
+    line-height: 1.15;
+    `;
 
 export default FeedbackOptions;
