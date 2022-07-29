@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const FeedbackOptions = ({ options, onLeaveFeedback }) => {
@@ -15,7 +15,12 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
                 );
             })}
         </Ul>);
-}
+};
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.array.isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
 
 const Ul = styled.ul`
 align-items: center;
