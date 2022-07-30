@@ -33,8 +33,11 @@ class Feedback extends React.Component {
 
   render() {
     const keyName = Object.keys(this.state);
+    console.log(keyName);
     const { good, neutral, bad } = this.state;
-    const count = this.countTotalFeedback();
+    const total = this.countTotalFeedback();
+    const percentage = this.countPositiveFeedbackPercentage();
+
     return (
       <>
       <Card>
@@ -42,8 +45,13 @@ class Feedback extends React.Component {
           <FeedbackOptions options={keyName} onLeaveFeedback={this.handleIncrement}/>
         </Section>
         <Section title='Statistics'>
-          {count===0 ? (<Notification message={'There is no feedback'} />) : (
-            <Statistics good={good} neutral={neutral} bad={bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
+          {total === 0 ? (<Notification message={'There is no feedback'} />) : (
+              <Statistics
+                good={good}
+                neutral={neutral}
+                bad={bad}
+                total={total}
+                positivePercentage={percentage} />
           )}
         </Section>
         </Card>
