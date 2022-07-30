@@ -33,7 +33,6 @@ class Feedback extends React.Component {
 
   render() {
     const keyName = Object.keys(this.state);
-    console.log(keyName);
     const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback();
     const percentage = this.countPositiveFeedbackPercentage();
